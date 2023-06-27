@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import AddUser from './components/AddUser';
+import Card from './components/Card';
 
-function App() {
+const App = (props) => {
+  const [users, setUsers] = useState({})
+
+  const addUserHandler = (user) => {
+    setUsers((prevUser) => {
+      return [user, ...prevUser]
+    })
+  }
+
+  const saveUserDataHandler = () => {
+    props.onSaveUserData()
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        
       </header>
+      <Card className=''>
+      <AddUser onSaveUserData={saveUserDataHandler} onAddUser={addUserHandler} />
+      </Card>
     </div>
   );
 }

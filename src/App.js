@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import AddUser from './components/AddUser';
-import Card from './components/Card';
+import Card from './components/UI/Card';
+import UserList from './components/UsersList';
 
 const App = (props) => {
   const data = [
@@ -31,6 +32,7 @@ const App = (props) => {
       <Card>
       <AddUser onSaveUserData={saveUserDataHandler} onAddUser={addUserHandler} />
       </Card>
+      <UserList />
     </div>
   );
 }

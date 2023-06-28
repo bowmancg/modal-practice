@@ -1,9 +1,12 @@
 import React from "react";
+import classes from './UsersList.module.css'
 
-const UserList = () => {
+const UserList = (props) => {
     return (
-        <div>
-
+        <div className={classes.users}>
+            <ul>
+            
+            </ul>
         </div>
     )
 }

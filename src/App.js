@@ -4,7 +4,15 @@ import AddUser from './components/AddUser';
 import Card from './components/Card';
 
 const App = (props) => {
-  const [users, setUsers] = useState({})
+  const data = [
+    {
+      id: 'e1',
+      username: 'Test Name',
+      age: 23,
+    }
+  ]
+
+  const [users, setUsers] = useState(data)
 
   const addUserHandler = (user) => {
     setUsers((prevUser) => {
@@ -20,7 +28,7 @@ const App = (props) => {
       <header>
         
       </header>
-      <Card className=''>
+      <Card>
       <AddUser onSaveUserData={saveUserDataHandler} onAddUser={addUserHandler} />
       </Card>
     </div>

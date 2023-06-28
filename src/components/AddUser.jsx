@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './AddUser.css'
 import Button from "./UI/Button";
+import Card from "./UI/Card";
 
 const AddUser = (props) => {
     const [enteredUser, setEnteredUser] = useState('')
@@ -24,15 +25,23 @@ const AddUser = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault()
+        if (enteredUser.trim().length === 0 || enteredAge.trim().length === 0) {
+            return
+        }
+        if (+enteredAge < 1) {
+            return
+        }
+        console.log(enteredUser, enteredAge)
         const userData = {
-            name: enteredUser,
+            username: enteredUser,
             age: +enteredAge,
         }
         saveUserDataHandler(userData)
         setEnteredUser('')
-        setEnteredUser('')
+        setEnteredAge('')
     }
     return (
+        <Card>
         <form onSubmit={submitHandler}>
             <div>
                 <label htmlFor="username">Username</label>
@@ -46,6 +55,7 @@ const AddUser = (props) => {
                 <Button type="submit">Add</Button>
             </div>
         </form>
+        </Card>
     )
 }
 

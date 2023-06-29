@@ -4,6 +4,7 @@ import AddUser from './components/AddUser';
 import UserList from './components/UsersList';
 
 const App = (props) => {
+  const [usersList, setUsersList] = useState([])
   const data = [
     {
       id: 'e1',
@@ -14,22 +15,19 @@ const App = (props) => {
 
   const [users, setUsers] = useState(data)
 
-  const addUserHandler = (user) => {
-    setUsers((prevUser) => {
-      return [user, ...prevUser]
+  const addUserHandler = (username, age) => {
+    setUsersList((prevUsersList) => {
+      return [...prevUsersList, {name: username, age: age, id: Math.random().toString()}]
     })
   }
 
-  const saveUserDataHandler = () => {
-    props.onSaveUserData()
-  }
   return (
     <div className="App">
       <header>
         
       </header>
-      <AddUser onSaveUserData={saveUserDataHandler} onAddUser={addUserHandler} />
-      <UserList users={[]} />
+      <AddUser onAddUser={addUserHandler} />
+      <UserList users={usersList} />
     </div>
   );
 }

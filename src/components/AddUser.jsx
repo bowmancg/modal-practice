@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import './AddUser.css'
 import Button from "./UI/Button";
 import Card from "./UI/Card";
+import ErrorModal from "./ErrorModal";
 
 const AddUser = (props) => {
     const [enteredUser, setEnteredUser] = useState('')
     const [enteredAge, setEnteredAge] = useState('')
+    const [error, setError] = useState()
 
     const userNameChangeHandler = (event) => {
         setEnteredUser(event.target.value)
@@ -15,32 +17,42 @@ const AddUser = (props) => {
         setEnteredAge(event.target.value)
     }
 
-    const saveUserDataHandler = (enteredUserData) => {
-        const userData = {
-            ...enteredUserData,
-            id: Math.random().toString()
-        }
-        props.onAddUser(userData)
-    }
+    // const saveUserDataHandler = (enteredUserData) => {
+    //     const userData = {
+    //         ...enteredUserData,
+    //         id: Math.random().toString()
+    //     }
+    //     props.onAddUser(userData)
+    // }
 
     const submitHandler = (event) => {
         event.preventDefault()
         if (enteredUser.trim().length === 0 || enteredAge.trim().length === 0) {
+            setError({
+                title: 'Invalid input',
+                message: 'Enter a valid name and age.'
+            })
             return
         }
         if (+enteredAge < 1) {
+            setError({
+                title: 'Invalid input',
+                message: 'Enter a valid age.'
+            })
             return
         }
         console.log(enteredUser, enteredAge)
-        const userData = {
-            username: enteredUser,
-            age: +enteredAge,
-        }
-        saveUserDataHandler(userData)
+        props.onAddUser(enteredUser, enteredAge)
         setEnteredUser('')
         setEnteredAge('')
     }
+
+    const errorHandler = () => {
+        setError(null)
+    }
     return (
+        <div>
+        {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
         <Card>
         <form onSubmit={submitHandler}>
             <div>
@@ -56,6 +68,7 @@ const AddUser = (props) => {
             </div>
         </form>
         </Card>
+        </div>
     )
 }
 

@@ -17,18 +17,18 @@ const App = (props) => {
 
   const addUserHandler = (username, age) => {
     setUsersList((prevUsersList) => {
-      return [...prevUsersList, {name: username, age: age, id: Math.random().toString()}]
+      return [...prevUsersList, { name: username, age: age, id: Math.random().toString() }]
     })
   }
 
   return (
-    <div className="App">
+    <React.Fragment>
       <header>
-        
+
       </header>
       <AddUser onAddUser={addUserHandler} />
       <UserList users={usersList} />
-    </div>
+    </React.Fragment>
   );
 }
 

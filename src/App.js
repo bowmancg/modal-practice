@@ -6,15 +6,6 @@ import Navbar from './components/UI/Navbar';
 
 const App = (props) => {
   const [usersList, setUsersList] = useState([])
-  const data = [
-    {
-      id: 'e1',
-      username: 'Test Name',
-      age: 23,
-    }
-  ]
-
-  const [users, setUsers] = useState(data)
 
   const addUserHandler = (username, age) => {
     setUsersList((prevUsersList) => {
@@ -25,7 +16,7 @@ const App = (props) => {
   return (
     <React.Fragment>
       <header>
-      <Navbar />
+        <Navbar />
       </header>
       <AddUser onAddUser={addUserHandler} />
       <UserList users={usersList} />

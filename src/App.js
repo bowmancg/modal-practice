@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import AddUser from './components/AddUser';
 import UserList from './components/UsersList';
+import Navbar from './components/UI/Navbar';
 
 const App = (props) => {
   const [usersList, setUsersList] = useState([])
@@ -24,7 +25,7 @@ const App = (props) => {
   return (
     <React.Fragment>
       <header>
-
+      <Navbar />
       </header>
       <AddUser onAddUser={addUserHandler} />
       <UserList users={usersList} />

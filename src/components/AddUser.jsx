@@ -11,14 +11,6 @@ const AddUser = (props) => {
 
     const [error, setError] = useState()
 
-    // const saveUserDataHandler = (enteredUserData) => {
-    //     const userData = {
-    //         ...enteredUserData,
-    //         id: Math.random().toString()
-    //     }
-    //     props.onAddUser(userData)
-    // }
-
     const submitHandler = (event) => {
         event.preventDefault()
         const enteredUser = nameInputRef.current.value
